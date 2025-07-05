@@ -3,7 +3,7 @@ public class Product implements Shippable {
     private String name;
     private double price;
     private boolean canExpire = false;
-    private LocalDate expirationDate = null;
+    private LocalDate expirationDate;
     private int quantity;
     private boolean shippable = false;
     private double weight = 0;
@@ -14,6 +14,7 @@ public class Product implements Shippable {
         this.quantity = quantity;
         this.weight = weight;
         this.canExpire = canExpire;
+        this.shippable = shippable;
         this.expirationDate = expirationDate;
     }
 
@@ -71,6 +72,9 @@ public class Product implements Shippable {
         return this.shippable;
     }
 
+    public boolean canExpire(){
+        return canExpire;
+    }
 
 
 }

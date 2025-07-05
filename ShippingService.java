@@ -2,16 +2,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ShippingService {
-    double shippingCostPerGram = 0.1;
+    double shippingCostPerGram = 0.5;
     
     public double calculateShipping(LinkedHashMap<Product,Integer> products){
         double packageWeight = 0;
         double totalShippingCost = 0;
         for(Map.Entry<Product, Integer> entry : products.entrySet()){
             packageWeight+=entry.getKey().getWeight()*entry.getValue();
-            totalShippingCost+=entry.getKey().getWeight()*entry.getValue()*shippingCostPerGram;
+            totalShippingCost+=packageWeight*shippingCostPerGram;
         }
-        return packageWeight*shippingCostPerGram;
+        return totalShippingCost;
 
     }
     public void displayShippingNotice(LinkedHashMap<Product,Integer> products){

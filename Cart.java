@@ -54,9 +54,12 @@ public class Cart {
     private boolean checkExpired(){
         LocalDate today = LocalDate.now();
         for(Map.Entry<Product, Integer> entry : cart.entrySet()){
-            if(entry.getKey().getExpiration().isBefore(today)){
+            if(entry.getKey().canExpire()){
+                if(entry.getKey().getExpiration().isBefore(today)){
                 return true;
             }
+            }
+            
         }
         return false;
 }
@@ -92,10 +95,12 @@ public class Cart {
             }
             double shippingCost = shippingService.calculateShipping(shippableItems);
             shippingService.displayShippingNotice(shippableItems);
-            System.out.println(shippableItems);
-
-            System.out.println("Subtotal : "+ subtotal);
+            System.out.println("\nSubtotal : "+ subtotal);
             System.out.println("Shipping : "+ shippingCost);
+            double total = shippingCost + subtotal;
+            System.out.println("Total : "+ total);
+
+
 
 
         }
